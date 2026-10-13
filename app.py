@@ -15,7 +15,7 @@ app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
 
 
-# ---------- helpers ----------
+
 
 def hash_password(password):
     return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
@@ -54,7 +54,7 @@ def render_todos(**extra):
     return render_template("todos.html", todos=rows, **extra)
 
 
-# ---------- pages ----------
+
 
 @app.route("/")
 def index():
@@ -124,7 +124,7 @@ def logout():
     return redirect(url_for("login"))
 
 
-# ---------- to-do ----------
+
 
 @app.route("/todos")
 @login_required
@@ -181,7 +181,6 @@ def delete_todo(todo_id):
     return redirect(url_for("todo_list"))
 
 
-# ---------- friendly errors ----------
 
 @app.errorhandler(404)
 def not_found(e):
